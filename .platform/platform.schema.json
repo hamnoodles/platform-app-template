@@ -155,8 +155,105 @@
           "default": false
         },
         "s3": {
-          "description": "The bucket <name>; the app may create and delete buckets <name>-*.",
-          "type": "boolean",
+          "description": "The bucket <name>; the app may create and delete buckets <name>-*. true, or an object with lifecycle rules.",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "lifecycle": {
+                  "description": "Expiry rules: objects in the bucket (under the prefix) are removed by the storage server once their last write is older than expire_days. Not reversible on the server. At most 10 rules per app.",
+                  "type": "array",
+                  "maxItems": 100,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "bucket",
+                      "expire_days"
+                    ],
+                    "properties": {
+                      "bucket": {
+                        "description": "<name> or <name>-<suffix> (lower-case letters, digits, single hyphens).",
+                        "type": "string",
+                        "maxLength": 63,
+                        "pattern": "^[a-z][a-z0-9]{0,30}(-[a-z0-9]+)*$"
+                      },
+                      "prefix": {
+                        "description": "Only objects whose name starts with it; absent: the whole bucket. No leading '/', no wildcards, no '..'.",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 512,
+                        "pattern": "^[^/*?\\[\\]\\\\][^*?\\[\\]\\\\]*$"
+                      },
+                      "expire_days": {
+                        "description": "Days after an object's last write.",
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 3650
+                      }
+                    }
+                  },
+                  "examples": [
+                    [
+                      {
+                        "bucket": "myapp",
+                        "prefix": "exports/",
+                        "expire_days": 30
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "default": false
+        },
+        "rabbitmq": {
+          "description": "A message broker vhost <name> with a user app-<name> on it alone. true, or an object with limits (missing ones take the platform defaults: 50 connections, 50 queues, 64 MiB per queue; maximums 200, 200, 1 GiB, and at most 8 GiB of queues x queue_bytes).",
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "limits": {
+                  "description": "The vhost's limits. Lowering one deletes nothing; new connections, queues or publishes are refused until the app is back under it.",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "connections": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "Maximum open connections."
+                    },
+                    "queues": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "Maximum queues."
+                    },
+                    "queue_bytes": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "description": "Maximum bytes in each queue; publishes beyond it are refused."
+                    }
+                  },
+                  "examples": [
+                    {
+                      "connections": 20,
+                      "queues": 10,
+                      "queue_bytes": 134217728
+                    }
+                  ]
+                }
+              }
+            }
+          ],
           "default": false
         }
       },
@@ -169,6 +266,25 @@
           },
           "redis": true,
           "s3": true
+        },
+        {
+          "s3": {
+            "lifecycle": [
+              {
+                "bucket": "myapp",
+                "prefix": "tmp/",
+                "expire_days": 1
+              }
+            ]
+          }
+        },
+        {
+          "rabbitmq": {
+            "limits": {
+              "queues": 10,
+              "queue_bytes": 134217728
+            }
+          }
         }
       ]
     },
