@@ -34,6 +34,8 @@ jobs:
     with:
       action: ${{ inputs.action || 'deploy' }}
       confirm: ${{ inputs.confirm || '' }}
+      # The server (docs/servers.md): apps (default) or shops; needs platform workflow v1.1.0 or later.
+      # platform: apps
     # keep: your secrets go to the platform workflow as one value (it takes only the names listed
     # in platform.yaml); `secrets: inherit` would pass nothing to a workflow of another owner.
     secrets:

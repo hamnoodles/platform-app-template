@@ -40,7 +40,7 @@ services:
       start_period: 10s
     deploy:
       resources:
-        limits: # change: at most 4 CPUs and 8 GiB per service and per app
+        limits: # change: apps server: required, at most 4 CPUs and 8 GiB per service and per app; shops: optional
           cpus: "0.5"
           memory: 256m
     restart: unless-stopped
