@@ -17,12 +17,20 @@
       ]
     },
     "domain": {
-      "description": "Defaults to the app name (https://<name>.apps.<platform domain>). Any other value must be a full domain allowlisted for this app by the platform admin.",
+      "description": "Defaults to the app name (https://<name>.apps.<platform domain>). Any other value is an explicit domain: the server must allow it (its registry, or any free hostname on a server with open explicit domains), and it must not be a platform hostname.",
       "type": "string",
       "pattern": "^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$",
       "maxLength": 253,
       "examples": [
         "shop.example.com"
+      ]
+    },
+    "certificate": {
+      "description": "Request a certificate for the explicit domain (default false: the server's default certificate, e.g. behind a CDN). Needs the domain's DNS pointing at the server; the app's own hostname always has a certificate.",
+      "type": "boolean",
+      "default": false,
+      "examples": [
+        true
       ]
     },
     "auth": {

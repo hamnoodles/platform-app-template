@@ -13,15 +13,15 @@ name: myapp # change: app name
 # explicit domain depends on the server (docs/servers.md): on the apps server the admin allows it
 # in the server's registry first; on the shops server any free domain works. certificate: true
 # requests a certificate for it once its DNS points at the server (default false: the server's
-# default certificate, e.g. behind a CDN); needs platform workflow v1.1.0 or later.
+# default certificate, e.g. behind a CDN).
 # domain: shop.example.com
 # certificate: true
 
-# On the apps server the platform answers only requests from Germany, Austria, Switzerland and
-# Luxembourg (the shops server has no geo-filter for now). Paths that foreign services must call
-# (webhooks) can be opened, each with everything below it; never "/". Only for paths the app
-# serves without the platform login (they check their own signature). Needs platform workflow
-# v1.0.5 or later. Docs: docs/operations.md, "Access from abroad".
+# On the apps server the platform answers only requests from Germany, Austria, Switzerland,
+# Luxembourg and the Netherlands (the shops server has no geo-filter for now). Paths that foreign
+# services must call (webhooks) can be opened, each with everything below it; never "/". Only for
+# paths the app serves without the platform login (they check their own signature). Docs:
+# docs/operations.md, "Access from abroad".
 # abroad_paths: [/webhooks/stripe]
 
 # forward: the platform login (Authentik) runs before every request (default).
