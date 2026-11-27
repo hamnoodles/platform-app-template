@@ -3,10 +3,10 @@
 Start here for an app on the shirtracer platform. A push to `main` deploys it to
 `https://<name>.apps.platform.shirtracer.gmbh` on the apps server; you never need access to the
 server. A shop runs on the shops server instead: `platform: shops` in `.github/workflows/deploy.yml`
-([Servers](https://github.com/shirtracer/platform-workflows/blob/v1/docs/servers.md)).
+([Servers](https://github.com/hamnoodles/platform-workflows/blob/v1/docs/servers.md)).
 
-**Use this template → Create a new repository**, in the `shirtracer` organization or in your own
-account. Then follow [Getting started](https://github.com/shirtracer/platform-workflows/blob/v1/docs/getting-started.md).
+**Use this template → Create a new repository**, in the `hamnoodles` organization or in your own
+account. Then follow [Getting started](https://github.com/hamnoodles/platform-workflows/blob/v1/docs/getting-started.md).
 
 | File | What it is |
 |------|------------|
@@ -20,6 +20,6 @@ account. Then follow [Getting started](https://github.com/shirtracer/platform-wo
 Edit the lines marked `change:` in `platform.yaml` and `deploy/compose.yaml` (at least the app
 name `myapp`); keep the lines marked `keep:`.
 
-Documentation for app teams: [shirtracer/platform-workflows/docs](https://github.com/shirtracer/platform-workflows/blob/v1/docs/README.md).
-Changes to this template don't reach existing apps; [Operations](https://github.com/shirtracer/platform-workflows/blob/v1/docs/operations.md#template-updates)
+Documentation for app teams: [hamnoodles/platform-workflows/docs](https://github.com/hamnoodles/platform-workflows/blob/v1/docs/README.md).
+Changes to this template don't reach existing apps; [Operations](https://github.com/hamnoodles/platform-workflows/blob/v1/docs/operations.md#template-updates)
 says how to take them over.

@@ -2,7 +2,7 @@
 # route's hostname) and ${APP_SECRETS} (where the credential files live); no other variables
 # are allowed. Lines marked "change:" are yours to edit; "keep:" lines bind the app to the
 # platform. Every rule, with a fix:
-# https://github.com/shirtracer/platform-workflows/blob/v1/docs/contract.md
+# https://github.com/hamnoodles/platform-workflows/blob/v1/docs/contract.md
 ---
 name: myapp # change: app name
 
