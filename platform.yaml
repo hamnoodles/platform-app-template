@@ -24,6 +24,11 @@ name: myapp # change: app name
 # docs/operations.md, "Access from abroad".
 # abroad_paths: [/webhooks/stripe]
 
+# Sites that may show this app in a frame (https origins, at most 10); without it only the app
+# itself may (the server's default). From policy 2.5.0 (shops 1.1.0), workflow v1.4.0. Docs:
+# docs/operations.md, "Framing".
+# frame_ancestors: [https://seoseatool.apps.platform.shirtracer.gmbh]
+
 # forward: the platform login (Authentik) runs before every request (default).
 # oidc:    the app logs users in itself with the platform's OIDC client (OIDC_CLIENT_* files).
 # none:    no platform login: public, or the app brings its own authentication.

@@ -130,6 +130,19 @@
       ],
       "default": []
     },
+    "frame_ancestors": {
+      "description": "Sites that may show this app in a frame: https origins (https://host or https://host:port, lower case, no path or wildcard), at most 10. Without it the server's default applies (normally only the app itself). From policy 2.5.0 (shops 1.1.0).",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        [
+          "https://seoseatool.apps.platform.shirtracer.gmbh"
+        ]
+      ],
+      "default": []
+    },
     "services": {
       "description": "Shared services the app uses. Removing one revokes access and keeps the data.",
       "type": "object",
