@@ -1,6 +1,6 @@
 ---
 # Checks this template: the example passes the pinned policy, the editor schema is the bundle's,
-# the workflows lint. Runs only in shirtracer/platform-app-template; in a repository created from
+# the workflows lint. Runs only in hamnoodles/platform-app-template; in a repository created from
 # the template it does nothing and may be deleted.
 name: template
 
@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 env:
-  # Same pin as POLICY_BUNDLE in shirtracer/platform-workflows (.github/workflows/app.yml at v1);
+  # Same pin as POLICY_BUNDLE in hamnoodles/platform-workflows (.github/workflows/app.yml at v1);
   # changed by pull request with each policy release.
   POLICY_BUNDLE: >-
     ghcr.io/svenm3/platform-policy:2.5.0@sha256:8272cf91051b394319e4b908952ffba723828b9bb91155cf8e0af4506fa47eee
@@ -22,7 +22,7 @@ env:
 
 jobs:
   template:
-    if: github.repository == 'shirtracer/platform-app-template'
+    if: github.repository == 'hamnoodles/platform-app-template'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -51,9 +51,9 @@ jobs:
           python3 - <<'PY'
           import yaml
           job = yaml.safe_load(open(".github/workflows/deploy.yml"))["jobs"]["platform"]
-          assert job["uses"] == "shirtracer/platform-workflows/.github/workflows/app.yml@v1", job["uses"]
+          assert job["uses"] == "hamnoodles/platform-workflows/.github/workflows/app.yml@v1", job["uses"]
           assert job["secrets"] == {"PLATFORM_SECRETS": "$" + "{{ toJSON(secrets) }}"}, "PLATFORM_SECRETS"
-          assert job["if"] == "github.repository != 'shirtracer/platform-app-template'", job.get("if")
+          assert job["if"] == "github.repository != 'hamnoodles/platform-app-template'", job.get("if")
           PY
 
       - name: Workflow lint

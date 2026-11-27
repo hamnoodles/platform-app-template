@@ -3,7 +3,7 @@
 #
 # The app's manifest: what the platform provides for it. Lines marked "change:" are yours to
 # edit; read the docs before changing anything else:
-# https://github.com/shirtracer/platform-workflows/tree/v1/docs
+# https://github.com/hamnoodles/platform-workflows/tree/v1/docs
 
 # change: your app name: lower-case letters and digits, starting with a letter, at most 31
 # characters, no "-". It names the route, database, Redis user, buckets and services.
